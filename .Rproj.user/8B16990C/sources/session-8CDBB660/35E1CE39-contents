@@ -1,0 +1,72 @@
+---
+title: "MRC examples"
+format: html
+editor: visual
+editor_options: 
+  chunk_output_type: console
+toc: true
+---
+
+# Load Required Packages
+```{r}
+#| label: setup
+#| message: false
+#| warning: false
+
+library(tidyverse)
+library(ds4ling)
+library(untidydata)
+library(broom)
+install.packages("broom")
+library(emmeans)
+
+```
+
+# Explore Data
+```{r}
+#| label: explore data
+
+ld<-language_diversity %>%
+  mutate_if(is.character, as.factor)%>%
+  pivot_wider(
+    names_from = "Measurement",
+    values_from = "Value")%>%
+  mutate(
+    lang_log=log(Langs),
+    area_log=log(Area),
+    pop_log=log(Population))
+
+summary(ld)
+dim(ld)
+str(ld)
+View(ld)
+
+```
+
+```{r}
+ld%>%
+  ggplot()+
+  aes(x=area_log, y= lang_log)+
+  geom_point()+
+  geom_smooth(method="lm")
+```
+
+# Fitting Models
+```{r}
+#| label: fit model
+
+mean(ld$lang_log)
+summary(mod_0<-lm(lang_log ~1, data= ld))
+summary(mod_1<-lm(lang_log ~ pop_log, data= ld))
+summary(mod_2<-lm(lang_log ~ pop_log + area_log, data= ld))
+summary(mod_3<-lm(lang_log ~ pop_log * area_log, data= ld))
+```
+
+# Tables and Plots
+```{r}
+#| label: tbl-model
+
+broom(mod_3)
+
+```
+

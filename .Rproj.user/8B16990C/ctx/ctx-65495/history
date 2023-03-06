@@ -1,0 +1,90 @@
+library(tidyverse)
+library(tidyverse)
+library(ds4ling)
+language_diversity
+library(untidydata)
+language_diversity
+summary(language_diversity)
+language_diversity$Continent<-as.factor(language_diversity$Continent)
+summary(language_diversity)
+# label: explore data
+language_diversity %>%
+mutate_if(is.character, as.numeric)
+# label: explore data
+language_diversity %>%
+mutate_if(is.character, as.numeric)
+language_diversity %>%
+mutate_if(is.character, as.numeric)
+# label: explore data
+language_diversity
+summary(language_diversity)
+language_diversity %>%
+mutate_if(is.character, as.factor)
+summary(ld)
+ld<-language_diversity %>%
+mutate_if(is.character, as.factor)
+summary(ld)
+dim(ld)
+glimpse(ld)
+str(ld)
+View(ld)
+glimpse(ld)
+ld%>%
+ggplot()+
+aes(x=Continent, y= Value)+
+geom_point()
+# label: tidy data
+ld%>%
+pivot_wider(
+names_from = "Measurement",
+values_from = "Value")
+install.packages(XQuartz)
+install.packages("XQuartz")
+library(tidyverse)
+library(ds4ling)
+library(untidydata)
+ld<-language_diversity %>%
+mutate_if(is.character, as.factor)
+check_for_XQuartz()
+install.packages("XQuartz")
+install.packages("XQuartz")
+library(tidyverse)
+library(ds4ling)
+library(untidydata)
+ld<-language_diversity %>%
+mutate_if(is.character, as.factor)%>%
+pivot_wider(
+names_from = "Measurement",
+values_from = "Value")%>%
+mutate(
+lang_log=log(Langs),
+area_log=log(Area),
+pop_log=log(Population))
+summary(ld)
+dim(ld)
+glimpse(ld)
+str(ld)
+View(ld)
+ld%>%
+ggplot()+
+aes(x=Continent, y= Value)+
+geom_point()
+summary(ld)
+ld%>%
+ggplot()+
+aes(x=area_log, y= lang_log)+
+geom_point()+
+geom_smooth(method="lm")
+mean(ld$lang_log)
+summary(mod_0<-lm(lang_log ~1, data= ld))
+summary(mod_1<-lm(lang_log ~ pop_log, data= ld))
+glimpse(ld)
+dim(ld)
+str(ld)
+summary(mod_2<-lm(lang_log ~ pop_log + area_log, data= ld))
+summary(mod_3<-lm(lang_log ~ pop_log * area_log, data= ld))
+summary(mod_2<-lm(lang_log ~ pop_log + area_log, data= ld))
+library(broom)
+library(emmeans)
+broom(mod_3)
+install.packages("broom")
